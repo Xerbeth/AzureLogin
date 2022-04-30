@@ -2,8 +2,10 @@ package co.gov.icfes.AzureLogin.Controller;
 
 //region import
 import co.gov.icfes.AzureLogin.AzureLoginApplication;
+import co.gov.icfes.AzureLogin.DTO.ApiResponse;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,8 +21,10 @@ public class PingController {
     }
 
     @GetMapping("/PingApplication")
-    public String PingApplication(){
-        return "Servicio OK";
+    public ApiResponse<HttpStatus> PingApplication(){
+        return new ApiResponse.ApiResponseBuilder<HttpStatus>(HttpStatus.OK)
+                .status(true)
+                .build();
     }
 
     @ApiIgnore
