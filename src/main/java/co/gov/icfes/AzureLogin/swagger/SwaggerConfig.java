@@ -1,4 +1,4 @@
-package co.gov.icfes.AzureLogin.Swagger;
+package co.gov.icfes.AzureLogin.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(
-                        RequestHandlerSelectors.basePackage("co.gov.icfes.AzureLogin.Controller"))
+                        RequestHandlerSelectors.basePackage("co.gov.icfes.AzureLogin.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

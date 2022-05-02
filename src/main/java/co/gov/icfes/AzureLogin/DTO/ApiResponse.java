@@ -4,11 +4,15 @@ import static co.gov.icfes.AzureLogin.Utils.Constants.Variables.*;
 
 public class ApiResponse<T> {
 
-    private final boolean Status;
-    private final String Message;
-    private final String Exception;
-    private final T Data;
+    private boolean Status;
+    private String Message;
+    private String Exception;
+    private T Data;
 
+    public ApiResponse(){
+        this.Status = false;
+        this.Message = (this.Status) ? SUCCESS_MESSAGE : FAILED_MESSAGE;
+    }
 
     public ApiResponse(boolean status, String message, String exception, T data) {
         Status = status;
@@ -24,20 +28,35 @@ public class ApiResponse<T> {
         this.Data = (T) apiResponseBuilder.Data;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return Status;
+    }
+    public void setStatus(boolean status) {
+        this.Status = status;
     }
 
     public String getMessage() {
         return Message;
     }
 
+    public void setMessage(String message) {
+        this.Message = message;
+    }
+
     public String getException() {
         return Exception;
     }
 
+    public void setException(String exception) {
+        this.Exception = exception;
+    }
+
     public T getData() {
         return Data;
+    }
+
+    public void setData(T data) {
+        this.Data = data;
     }
 
     public static class ApiResponseBuilder<T>{
