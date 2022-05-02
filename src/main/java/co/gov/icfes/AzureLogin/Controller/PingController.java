@@ -12,15 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 import springfox.documentation.annotations.ApiIgnore;
 //endregion import
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 @SpringBootApplication
 @RestController
 public class PingController {
-    public static void main(String[] args) {
-        SpringApplication.run(AzureLoginApplication.class, args);
-    }
 
     @GetMapping("/PingApplication")
     public ApiResponse<HttpStatus> PingApplication(){
