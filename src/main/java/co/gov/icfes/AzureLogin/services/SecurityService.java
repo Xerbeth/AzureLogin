@@ -1,30 +1,37 @@
 package co.gov.icfes.AzureLogin.services;
 
+//region import
 import co.gov.icfes.AzureLogin.DTO.ApiResponse;
-import co.gov.icfes.AzureLogin.services.implement.ISecurity;
+import co.gov.icfes.AzureLogin.services.implement.ISecurityService;
 import com.azure.identity.ClientSecretCredential;
 import com.azure.identity.ClientSecretCredentialBuilder;
 import com.microsoft.graph.authentication.TokenCredentialAuthProvider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+//endregion import
 
 import static co.gov.icfes.AzureLogin.Utils.Constants.Variables.*;
 
 @Service
-public class SecurityService implements ISecurity {
+public class SecurityService implements ISecurityService {
 
     private static final Logger LOG = LogManager.getLogger(SecurityService.class);
 
-    private String ClientId = "318c3c9b-9f36-4cbe-8ffa-93bd78428834";
-    private String ClientSecret = "45z7Q~9H2Ou4qWAESaUyOp0TBN5jYLGcdDsXB";
-    private String TenantId = "375abf56-f1c9-42af-8094-fb5b7f1020fb";
-    private String DefaultScope = "https://graph.microsoft.com/.default";
-    private String DefaultUrl = "https://graph.microsoft.com/v1.0/me";
+    @Value("${spring.cloud.azure.active-directory.credential.client-id}")
+    private String ClientId;
+    @Value("${spring.cloud.azure.active-directory.credential.client-secret}")
+    private String ClientSecret;
+    @Value("${spring.cloud.azure.active-directory.profile.tenant-id}")
+    private String TenantId;
+    @Value("${spring.cloud.azure.active-directory.default-scope}")
+    private String DefaultScope;
+    @Value("${spring.cloud.azure.active-directory.default-url}")
+    private String DefaultUrl;
 
     @Override
     public ApiResponse<String> GetToken() throws Exception {

@@ -1,9 +1,7 @@
 package co.gov.icfes.AzureLogin.controller;
 
 //region import
-import co.gov.icfes.AzureLogin.AzureLoginApplication;
 import co.gov.icfes.AzureLogin.DTO.ApiResponse;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
