@@ -13,8 +13,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @SpringBootApplication
 @RestController
 public class PingController {
-
-    @GetMapping("/PingApplication")
+    @GetMapping(path = "/Ping/PingApplication")
     public ApiResponse<HttpStatus> PingApplication(){
         return new ApiResponse.ApiResponseBuilder<HttpStatus>(HttpStatus.OK)
                 .status(true)

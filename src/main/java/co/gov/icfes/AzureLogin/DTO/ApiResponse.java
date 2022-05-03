@@ -33,6 +33,7 @@ public class ApiResponse<T> {
     }
     public void setStatus(boolean status) {
         this.Status = status;
+        setException((this.Status) ? EMPTY_STRING : getException());
     }
 
     public String getMessage() {

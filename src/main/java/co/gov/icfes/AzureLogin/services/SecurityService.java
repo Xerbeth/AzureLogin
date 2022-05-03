@@ -13,9 +13,8 @@ import org.springframework.stereotype.Service;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-//endregion import
-
 import static co.gov.icfes.AzureLogin.Utils.Constants.Variables.*;
+//endregion import
 
 @Service
 public class SecurityService implements ISecurityService {
@@ -34,7 +33,7 @@ public class SecurityService implements ISecurityService {
     private String DefaultUrl;
 
     @Override
-    public ApiResponse<String> GetToken() throws Exception {
+    public ApiResponse<String> GetToken() {
         ApiResponse<String> response = new ApiResponse<String>();
         try{
             LOG.info("Solicitud de generación de token Active Directory.");
