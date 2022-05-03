@@ -1,7 +1,7 @@
 package co.gov.icfes.AzureLogin.controller;
 
 //region import
-import co.gov.icfes.AzureLogin.DTO.ApiResponse;
+import co.gov.icfes.AzureLogin.dto.ApiResponse;
 import co.gov.icfes.AzureLogin.services.implement.ISecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +16,7 @@ public class SecurityController {
     private ISecurityService securityService;
 
     @RequestMapping(value = "/Security/GetADTokent", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ApiResponse<String> GetToken() throws Exception {
+    public @ResponseBody ApiResponse<String> GetToken() {
         return securityService.GetToken();
     }
 

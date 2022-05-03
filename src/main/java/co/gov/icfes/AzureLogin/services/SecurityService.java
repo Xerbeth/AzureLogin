@@ -1,7 +1,7 @@
 package co.gov.icfes.AzureLogin.services;
 
 //region import
-import co.gov.icfes.AzureLogin.DTO.ApiResponse;
+import co.gov.icfes.AzureLogin.dto.ApiResponse;
 import co.gov.icfes.AzureLogin.services.implement.ISecurityService;
 import com.azure.identity.ClientSecretCredential;
 import com.azure.identity.ClientSecretCredentialBuilder;
@@ -9,6 +9,7 @@ import com.microsoft.graph.authentication.TokenCredentialAuthProvider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import java.net.URL;
 import java.util.ArrayList;
@@ -50,6 +51,34 @@ public class SecurityService implements ISecurityService {
 
             URL requestUrl = new URL(DefaultUrl);
             response.setData(tokenCredentialAuthProvider.getAuthorizationTokenAsync(requestUrl).get());
+            response.setMessage(SUCCESS_MESSAGE);
+            response.setStatus(SUCCESS);
+
+        }catch (Exception ex){
+            LOG.info(SERVICE_EXECUTION_ERROR + SecurityService.class.getName());
+            LOG.error(ex);
+            response.setException(ex.getMessage());
+        }
+        return response;
+    }
+
+    @Override
+    public ApiResponse<TokenCredentialAuthProvider> GetTokenCredencialAuthProvider() {
+        ApiResponse<TokenCredentialAuthProvider> response = new ApiResponse<TokenCredentialAuthProvider>();
+        try{
+            LOG.info("Solicitud interna de generación de token Active Directory.");
+            List<String> scopes = new ArrayList<String>();
+            scopes.add(DefaultScope);
+
+            final ClientSecretCredential clientSecretCredential  = new ClientSecretCredentialBuilder()
+                    .clientId(ClientId)
+                    .clientSecret(ClientSecret)
+                    .tenantId(TenantId)
+                    .build();
+
+            final TokenCredentialAuthProvider tokenCredentialAuthProvider = new TokenCredentialAuthProvider(scopes, clientSecretCredential );
+
+            response.setData(tokenCredentialAuthProvider);
             response.setMessage(SUCCESS_MESSAGE);
             response.setStatus(SUCCESS);
 

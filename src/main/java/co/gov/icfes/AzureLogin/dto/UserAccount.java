@@ -1,4 +1,4 @@
-package co.gov.icfes.AzureLogin.DTO;
+package co.gov.icfes.AzureLogin.dto;
 
 import static co.gov.icfes.AzureLogin.Utils.Constants.StringFormat.upperCaseFirst;
 import static co.gov.icfes.AzureLogin.Utils.Constants.Variables.EMPTY_STRING;

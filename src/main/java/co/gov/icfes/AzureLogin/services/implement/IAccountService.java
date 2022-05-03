@@ -1,7 +1,9 @@
 package co.gov.icfes.AzureLogin.services.implement;
 
-import co.gov.icfes.AzureLogin.DTO.ApiResponse;
-import co.gov.icfes.AzureLogin.DTO.UserAccount;
+import co.gov.icfes.AzureLogin.dto.ApiResponse;
+import co.gov.icfes.AzureLogin.dto.ChangePasswordAccount;
+import co.gov.icfes.AzureLogin.dto.UserAccount;
+import org.springframework.scheduling.annotation.Async;
 
 public interface IAccountService {
     /**
@@ -17,4 +19,18 @@ public interface IAccountService {
      * @return Información de la cuenta del usuario
      */
     ApiResponse<String> CreateUserAccount(UserAccount userAccount);
+
+    /**
+     * Método para eliminar un usuario del Active Directory
+     * @param idUserAccount Identificador del usuario
+     * @return Respuesta de la petición
+     */
+    ApiResponse<Boolean> DeleteUserAccount(String idUserAccount);
+
+    /**
+     * Método para cambiar la contraseña de un usuario
+     * @param changePasswordAccount Objeto requeridos para la operación
+     * @return Respuesta de la petición
+     */
+    ApiResponse<Boolean> ChangePassword(ChangePasswordAccount changePasswordAccount);
 }

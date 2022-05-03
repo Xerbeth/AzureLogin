@@ -1,7 +1,7 @@
 package co.gov.icfes.AzureLogin.Utils.Constants;
 
 //region import
-import co.gov.icfes.AzureLogin.DTO.UserAccount;
+import co.gov.icfes.AzureLogin.dto.UserAccount;
 import com.microsoft.graph.models.User;
 //endregion import
 
