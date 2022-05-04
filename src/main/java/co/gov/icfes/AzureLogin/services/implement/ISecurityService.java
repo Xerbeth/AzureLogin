@@ -2,8 +2,8 @@ package co.gov.icfes.AzureLogin.services.implement;
 
 //region import
 import co.gov.icfes.AzureLogin.dto.ApiResponse;
+import co.gov.icfes.AzureLogin.dto.LoginUser;
 import com.microsoft.graph.authentication.TokenCredentialAuthProvider;
-import org.springframework.scheduling.annotation.Async;
 //endregion import
 
 public interface ISecurityService {
@@ -20,5 +20,10 @@ public interface ISecurityService {
      */
     ApiResponse<TokenCredentialAuthProvider> GetTokenCredencialAuthProvider();
 
-    void GetTokenUsernamePassword() throws Exception;
+    /**
+     * Método para obtener el Token de operación sobre un usuario
+     * @param loginUser
+     * @return Token de operación
+     */
+    ApiResponse<String> GetTokenUsernamePassword(LoginUser loginUser);
 }
