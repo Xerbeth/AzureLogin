@@ -19,4 +19,6 @@ public interface ISecurityService {
      * @return TokenCredencialAuthProvider
      */
     ApiResponse<TokenCredentialAuthProvider> GetTokenCredencialAuthProvider();
+
+    void GetTokenUsernamePassword() throws Exception;
 }

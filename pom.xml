@@ -77,7 +77,13 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>6.0.0.Final</version>
 		</dependency>
-
+		<!-- Inicio dependencias del msal4j -->
+		<dependency>
+			<groupId>com.microsoft.azure</groupId>
+			<artifactId>msal4j</artifactId>
+			<version>1.11.3</version>
+		</dependency>
+		<!-- Fin dependencias del msal4j -->
 
 	</dependencies>
 
@@ -88,6 +94,14 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+
+		<!--Allows access to maven resources-->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
 
 </project>

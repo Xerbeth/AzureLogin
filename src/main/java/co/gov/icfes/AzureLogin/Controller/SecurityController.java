@@ -14,10 +14,19 @@ import org.springframework.web.bind.annotation.*;
 public class SecurityController {
     @Autowired
     private ISecurityService securityService;
-
-    @RequestMapping(value = "/Security/GetADTokent", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/Security/GetTokent",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ApiResponse<String> GetToken() {
         return securityService.GetToken();
+    }
+
+    @RequestMapping(value = "/Security/GetTokenUsernamePassword",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ApiResponse<String> GetTokenUsernamePassword() throws Exception {
+        securityService.GetTokenUsernamePassword();
+        return new ApiResponse<String>();
     }
 
 }
