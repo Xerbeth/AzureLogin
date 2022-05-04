@@ -28,14 +28,12 @@ public class AccountController {
     public ApiResponse<String> GetInformationAccount(@RequestBody UserAccount userAccount) {
         return accountService.CreateUserAccount(userAccount);
     }
-
     @RequestMapping(value = "/Account/DeleteUserAccount",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<Boolean> DeleteUserAccount(@RequestParam String idUserAccount) {
         return accountService.DeleteUserAccount(idUserAccount);
     }
-
     @RequestMapping(value = "/Account/ChangePassword",
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)

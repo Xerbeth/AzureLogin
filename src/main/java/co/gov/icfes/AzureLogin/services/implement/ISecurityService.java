@@ -26,4 +26,13 @@ public interface ISecurityService {
      * @return Token de operación
      */
     ApiResponse<String> GetTokenUsernamePassword(LoginUser loginUser);
+
+    /**
+     * Método para obtener el TokenCredencialAuthProvider para realizar operaciones sobre el Active Directory
+     * mediante los correo electronico corporativo del usuario y la contraseña
+     * @param correoElectronico Correo electronico corporativo de la cuenta
+     * @param password Constraseña
+     * @return TokenCredencialAuthProvider
+     */
+    ApiResponse<TokenCredentialAuthProvider> GetTokenCredencialAuthProviderByUserNamePassword(String correoElectronico, String password);
 }

@@ -6,6 +6,8 @@ import co.gov.icfes.AzureLogin.dto.LoginUser;
 import co.gov.icfes.AzureLogin.services.implement.ISecurityService;
 import com.azure.identity.ClientSecretCredential;
 import com.azure.identity.ClientSecretCredentialBuilder;
+import com.azure.identity.UsernamePasswordCredential;
+import com.azure.identity.UsernamePasswordCredentialBuilder;
 import com.microsoft.aad.msal4j.*;
 import com.microsoft.graph.authentication.TokenCredentialAuthProvider;
 import org.apache.logging.log4j.LogManager;
@@ -123,6 +125,30 @@ public class SecurityService implements ISecurityService {
             LOG.info("Id token:         " + result.idToken());
 
             response.setData(result.accessToken());
+            response.setMessage(SUCCESS_MESSAGE);
+            response.setStatus(SUCCESS);
+        }catch (Exception ex){
+            LOG.info(SERVICE_EXECUTION_ERROR + SecurityService.class.getName());
+            LOG.error(ex);
+            response.setException(ex.getMessage());
+        }
+
+        return response;
+    }
+
+    @Override
+    public ApiResponse<TokenCredentialAuthProvider> GetTokenCredencialAuthProviderByUserNamePassword(String correoElectronico, String password) {
+        ApiResponse<TokenCredentialAuthProvider> response = new ApiResponse<TokenCredentialAuthProvider>();
+        try{
+            final UsernamePasswordCredential usernamePasswordCredential = new UsernamePasswordCredentialBuilder()
+                    .clientId(ClientId)
+                    .username(correoElectronico)
+                    .password(password)
+                    .build();
+
+            final TokenCredentialAuthProvider tokenCredentialAuthProvider = new TokenCredentialAuthProvider(Arrays.asList(DefaultScope), usernamePasswordCredential);
+
+            response.setData(tokenCredentialAuthProvider);
             response.setMessage(SUCCESS_MESSAGE);
             response.setStatus(SUCCESS);
         }catch (Exception ex){

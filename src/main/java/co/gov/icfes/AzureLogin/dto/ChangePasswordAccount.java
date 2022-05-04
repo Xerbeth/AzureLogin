@@ -11,9 +11,9 @@ public class ChangePasswordAccount {
      */
     private String ContrasenaNueva;
     /**
-     * Propiedad para el identificador del usuario
+     * Propiedad para el correo electroniico corporativo de la cuenta del usuario
      */
-    private String IdUserAccount;
+    private String CorreoElectronico;
     public ChangePasswordAccount(){}
 
     public String getContrasenaActual() {
@@ -32,11 +32,11 @@ public class ChangePasswordAccount {
         ContrasenaNueva = contrasenaNueva;
     }
 
-    public String getIdUserAccount() {
-        return IdUserAccount;
+    public String getCorreoElectronico() {
+        return CorreoElectronico;
     }
 
-    public void setIdUserAccount(String idUserAccount) {
-        IdUserAccount = idUserAccount;
+    public void setCorreoElectronico(String correoElectronico) {
+        CorreoElectronico = correoElectronico;
     }
 }

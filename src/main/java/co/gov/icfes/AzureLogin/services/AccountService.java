@@ -7,6 +7,7 @@ import co.gov.icfes.AzureLogin.dto.UserAccount;
 import co.gov.icfes.AzureLogin.Utils.Constants.MapperUserGrahp;
 import co.gov.icfes.AzureLogin.services.implement.IAccountService;
 import co.gov.icfes.AzureLogin.services.implement.ISecurityService;
+import com.azure.identity.*;
 import com.microsoft.graph.authentication.TokenCredentialAuthProvider;
 import com.microsoft.graph.models.PasswordProfile;
 import com.microsoft.graph.models.User;
@@ -17,6 +18,11 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static co.gov.icfes.AzureLogin.Utils.Constants.AccountMessage.*;
 import static co.gov.icfes.AzureLogin.Utils.Constants.Variables.*;
 //endregion import
@@ -144,14 +150,19 @@ public class AccountService implements IAccountService {
     public ApiResponse<Boolean> ChangePassword(ChangePasswordAccount changePasswordAccount) {
         ApiResponse<Boolean> response = new ApiResponse<Boolean>();
         try{
-            LOG.info("Solicitud de eliminación de cuenta de usuario " + changePasswordAccount.getIdUserAccount());
-            ApiResponse<TokenCredentialAuthProvider> tokenCredentialAuthProvider = securityService.GetTokenCredencialAuthProvider();
+            LOG.info("Solicitud de cambio de contraseña de la cuenta de usuario " + changePasswordAccount.getCorreoElectronico());
+
+            ApiResponse<TokenCredentialAuthProvider> tokenCredentialAuthProvider = securityService.GetTokenCredencialAuthProviderByUserNamePassword(changePasswordAccount.getCorreoElectronico(), changePasswordAccount.getContrasenaActual());
 
             if(!tokenCredentialAuthProvider.getStatus()){
                 throw new Exception(ERROR04_TOKEN_CHANGEPASSWORD);
             }
 
-            GraphServiceClient graphClient = GraphServiceClient.builder().authenticationProvider( tokenCredentialAuthProvider.getData() ).buildClient();
+            final GraphServiceClient graphClient =
+                    GraphServiceClient
+                            .builder()
+                            .authenticationProvider(tokenCredentialAuthProvider.getData())
+                            .buildClient();
 
             graphClient.me()
                     .changePassword(UserChangePasswordParameterSet
