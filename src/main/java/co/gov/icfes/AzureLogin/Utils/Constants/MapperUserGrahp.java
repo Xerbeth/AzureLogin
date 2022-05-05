@@ -17,17 +17,17 @@ public class MapperUserGrahp {
      */
     public static UserAccount ToUserAccount(final User user){
         UserAccount userAccount = new UserAccount();
-        userAccount.setIdUserAccount(user.id);
-        userAccount.setNombreCompleto(user.displayName);
-        userAccount.setPrimerNombre(user.givenName);
-        userAccount.setPrimerApellido(user.surname);
-        userAccount.setCorreoElectronico(user.mail);
-        userAccount.setUserName(user.mailNickname);
-        userAccount.setNumeroTelefonico(user.mobilePhone);
+        userAccount.setIdUserAccount(user.id == null ? "" :user.id);
+        userAccount.setNombreCompleto(user.displayName == null ? "" : user.displayName);
+        userAccount.setPrimerNombre(user.givenName == null ? "" : user.givenName);
+        userAccount.setPrimerApellido(user.surname == null ? "" : user.surname);
+        userAccount.setCorreoElectronico(user.mail == null ? "" : user.mail);
+        userAccount.setUserName(user.mailNickname == null ? "" : user.mailNickname);
+        userAccount.setNumeroTelefonico(user.mobilePhone == null ? "" : user.mobilePhone);
         userAccount.setFechaNacimiento(String.valueOf(user.birthday));
-        userAccount.setPais(user.country);
-        userAccount.setMunicipio(user.city);
-        userAccount.setDireccion(user.streetAddress);
+        userAccount.setPais(user.country == null ? "" : user.country);
+        userAccount.setMunicipio(user.city == null ? "" : user.city);
+        userAccount.setDireccion(user.streetAddress == null ? "" : user.streetAddress);
 
         return userAccount;
     }
