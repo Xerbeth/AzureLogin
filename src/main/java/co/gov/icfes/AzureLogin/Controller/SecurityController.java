@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class SecurityController {
     @Autowired
     private ISecurityService securityService;
-    @RequestMapping(value = "/Security/GetTokent",
+    @RequestMapping(value = "/Security/GetToken",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ApiResponse<String> GetToken() {
