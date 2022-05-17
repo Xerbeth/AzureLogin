@@ -40,4 +40,13 @@ public class AccountController {
     public ApiResponse<Boolean> ChangePassword(@RequestBody ChangePasswordAccount changePasswordAccount) {
         return accountService.ChangePassword(changePasswordAccount);
     }
+
+    @RequestMapping(value = "/Account/UpdateUserAccount",
+            method = RequestMethod.PATCH,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ApiResponse<Boolean> UpdateUserAccount(@RequestBody UserAccount userAccount) {
+        return accountService.UpdateUserAccount(userAccount);
+    }
+
+
 }

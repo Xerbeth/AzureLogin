@@ -24,9 +24,9 @@ public class MapperUserGrahp {
         userAccount.setIdUserAccount(user.id == null ? "" :user.id);
         userAccount.setNombreCompleto(user.displayName == null ? "" : user.displayName);
         userAccount.setPrimerNombre(user.givenName == null ? "" : nombresSeparados[0]);
-        userAccount.setSegundoNombre(nombresSeparados == null ? "" : nombresSeparados[1]);
+        userAccount.setSegundoNombre(nombresSeparados.length == 1 ? "" : nombresSeparados[1]);
         userAccount.setPrimerApellido(user.surname == null ? "" : apellidosSeparados[0]);
-        userAccount.setSegundoApellido(apellidosSeparados == null ? "" : apellidosSeparados[1]);
+        userAccount.setSegundoApellido(apellidosSeparados.length == 1 ? "" : apellidosSeparados[1]);
         userAccount.setCorreoElectronico(user.mail == null ? "" : user.mail);
         userAccount.setUserName(user.mailNickname == null ? "" : user.mailNickname);
         userAccount.setNumeroTelefonico(user.mobilePhone == null ? "" : user.mobilePhone);

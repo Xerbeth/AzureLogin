@@ -34,4 +34,12 @@ public interface IAccountService {
      * @return Respuesta de la petición
      */
     ApiResponse<Boolean> ChangePassword(ChangePasswordAccount changePasswordAccount);
+
+    /**
+     * Método para actualizar los datos de una cuenta de usuario en el Active Directory
+     * @param userAccount Información de la cuenta
+     * @return Respuesta de la petición
+     */
+    ApiResponse<Boolean> UpdateUserAccount(UserAccount userAccount);
+
 }
