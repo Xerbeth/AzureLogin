@@ -19,4 +19,15 @@ public class StringFormat {
         arr[0] = Character.toUpperCase(arr[0]);
         return new String(arr);
     }
+
+    /**
+     * Método para separar un String por espacios
+     * @param val Texto a separar
+     * @return arreglo con valores separados
+     */
+    public static String[] splitName(String val){
+        String[] valSplited = null;
+        if(val != null){valSplited = val.split("\\s+");}
+        return valSplited;
+    }
 }

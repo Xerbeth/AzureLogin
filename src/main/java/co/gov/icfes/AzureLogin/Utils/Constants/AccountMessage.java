@@ -9,4 +9,7 @@ public class AccountMessage {
     public static final String ERROR02_TOKEN_CREATEACCOUNT = "ERROR02_TOKEN_CREATEACCOUNT - Ocurrió un error obteniendo el token de operación para la creación de la cuenta del usuario.";
     public static final String ERROR03_TOKEN_DELETEACCOUNT = "ERROR03_TOKEN_DELETE - Ocurrió un error obteniendo el token de operación para eliminar la cuenta del usuario.";
     public static final String ERROR04_TOKEN_CHANGEPASSWORD = "ERROR04_TOKEN_CHANGEPASSWORD - Ocurrió un error obteniendo el token de operación para el cambio de contraseña de la cuenta del usuario.";
+
+    public static final String ERROR05_TOKEN_UPDATEACCOUNT = "ERROR05_TOKEN_UPDATEACCOUNT - Ocurrió un error obteniendo el token de operación para la actualización de los datos de la cuenta del usuario.";
+
 }

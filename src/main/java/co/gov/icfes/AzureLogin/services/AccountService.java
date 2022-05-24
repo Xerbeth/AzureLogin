@@ -184,4 +184,48 @@ public class AccountService implements IAccountService {
         }
         return response;
     }
+
+    public ApiResponse<Boolean> UpdateUserAccount(UserAccount userAccount) {
+        ApiResponse<Boolean> response = new ApiResponse<Boolean>();
+
+        try{
+            LOG.info("Solicitud de actualización de datos de cuenta de usuario " + userAccount.getIdUserAccount());
+            ApiResponse<TokenCredentialAuthProvider> tokenCredentialAuthProvider = securityService.GetTokenCredencialAuthProvider();
+
+            if(!tokenCredentialAuthProvider.getStatus()){
+                throw new Exception(ERROR05_TOKEN_UPDATEACCOUNT);
+            }
+
+            final GraphServiceClient graphClient =
+                    GraphServiceClient
+                            .builder()
+                            .authenticationProvider(tokenCredentialAuthProvider.getData())
+                            .buildClient();
+            User user = new User();
+            user.displayName = userAccount.getPrimerNombre() + " " + userAccount.getPrimerApellido();
+            user.givenName = userAccount.getPrimerNombre();
+            user.surname = userAccount.getPrimerApellido();
+            user.mailNickname = userAccount.getUserName();
+            user.mail = userAccount.getCorreoElectronico();
+            user.mobilePhone = userAccount.getNumeroTelefonico();
+            user.country = userAccount.getPais();
+            user.city = userAccount.getMunicipio();
+            user.streetAddress = userAccount.getDireccion();
+
+            graphClient.users(userAccount.getIdUserAccount())
+                    .buildRequest()
+                    .patch(user);
+
+            response.setData(true);
+            response.setMessage(SUCCESS_MESSAGE);
+            response.setStatus(SUCCESS);
+
+        }catch (Exception ex){
+            LOG.info(SERVICE_EXECUTION_ERROR + SecurityService.class.getName());
+            LOG.error(ex);
+            response.setException(ex.getMessage());
+        }
+        return response;
+    }
+
 }
